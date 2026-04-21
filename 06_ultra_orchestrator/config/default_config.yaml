@@ -1,0 +1,62 @@
+# Ultra Orchestrator Default Configuration
+
+kimi_api_keys:
+  - id: "KEY_1"
+    key: "${KIMI_KEY_1}"
+    tier: "coding"
+    max_tokens_per_minute: 200000
+    max_requests_per_minute: 60
+    priority: 1
+  - id: "KEY_2"
+    key: "${KIMI_KEY_2}"
+    tier: "coding"
+    max_tokens_per_minute: 200000
+    max_requests_per_minute: 60
+    priority: 2
+  - id: "KEY_3"
+    key: "${KIMI_KEY_3}"
+    tier: "coding"
+    max_tokens_per_minute: 200000
+    max_requests_per_minute: 60
+    priority: 3
+  - id: "KEY_4"
+    key: "${KIMI_KEY_4}"
+    tier: "coding"
+    max_tokens_per_minute: 200000
+    max_requests_per_minute: 60
+    priority: 4
+
+rate_limit_strategy: "token_resonance"
+safety_margin: 0.80
+global_concurrent_limit: 20
+batch_size_max: 20
+batch_size_min: 1
+max_retries: 3
+task_timeout_seconds: 120
+checkpoint_interval: 5
+
+sandbox:
+  enabled: true
+  timeout_seconds: 30
+  blocked_modules:
+    - os.system
+    - subprocess.call
+    - subprocess.Popen
+    - eval
+    - exec
+
+quality_gate:
+  layer_0_existence: true      # Always enabled, cannot disable
+  layer_1_anti_smell: true     # Always enabled, cannot disable
+  layer_2_criteria: true
+  layer_3_sandbox: true
+  layer_4_dedup: true
+
+display:
+  show_reasoning_panel: false
+  log_level: "INFO"
+  theme: "dark"
+
+cost_control:
+  max_session_cost_usd: 50.0
+  pause_on_cost_exceeded: true
