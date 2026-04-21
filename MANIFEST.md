@@ -51,7 +51,7 @@ The Ultra Orchestrator is the brain that coordinates all 300 embedded Ghidra exp
 
 ## Who Builds It
 
-Kimi K2.6 Agent Swarm — 300 Ghidra-embedded expert subagents coordinated by the Ultra Orchestrator master core.
+Kimi K2.6 Agent Swarm —
 
 ---
 
