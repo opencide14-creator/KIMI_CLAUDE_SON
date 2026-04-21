@@ -1,0 +1,10 @@
+{
+  "file": "02_VEKIL_KAAN/.gitignore",
+  "size_bytes": 119,
+  "lines": 13,
+  "type": "config",
+  "summary": "Git ignore rules for Vekil Kaan. Excludes .env, private keys (kral_private.pem, *.pem), data dir, Python cache (__pycache__, *.pyc, *.pyo), pytest cache, egg-info, dist, build, and .DS_Store. Confirms private key is never committed to version control.",
+  "kral_sig": "1b4a170b920674de6889365d290ed03c001b70943952fa287f94c9238745a9cd",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:48:27Z"
+}

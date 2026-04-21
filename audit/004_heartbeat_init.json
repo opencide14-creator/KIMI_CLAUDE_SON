@@ -1,0 +1,10 @@
+{
+  "file": "02_VEKIL_KAAN/agents/heartbeat/__init__.py",
+  "size_bytes": 76,
+  "lines": 2,
+  "type": "python",
+  "summary": "Package init for heartbeat agent. Docstring: 'agents.heartbeat — Heartbeat agent: SENSE→STORE→VERIFY→PULSE'. No imports or exports.",
+  "kral_sig": "1311740dd5ac8671a198e623d029703049077ac92bc07294cf5d242a1fdab971",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:49:50Z"
+}

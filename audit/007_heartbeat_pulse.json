@@ -1,0 +1,17 @@
+{
+  "file": "02_VEKIL_KAAN/agents/heartbeat/pulse.py",
+  "size_bytes": 2919,
+  "lines": 79,
+  "type": "python",
+  "classes": [
+    "PulseH",
+    "PulseR"
+  ],
+  "functions": [
+    "compute_soul_version"
+  ],
+  "summary": "Pulse format definitions for dual-agent communication. PulseH (Heartbeat→Reactive, every 15s): carries memory_root_hash, soul_version, last_verified_event, alive flag. PulseR (Reactive→Heartbeat, every 5 actions): carries last_action_hash, tool_result_hash, action_count. Both use HEARTBEAT/v1 protocol. compute_soul_version() creates SHA-256 digest of concatenated soul law hashes for integrity tracking.",
+  "kral_sig": "429bc5e5e106129863010e6740848e664afa01cd138f19960ba66572c202b43c",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:50:43Z"
+}

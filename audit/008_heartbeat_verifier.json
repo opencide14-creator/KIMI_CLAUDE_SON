@@ -1,0 +1,16 @@
+{
+  "file": "02_VEKIL_KAAN/agents/heartbeat/verifier.py",
+  "size_bytes": 6105,
+  "lines": 186,
+  "type": "python",
+  "classes": [
+    "Violation",
+    "VerifyVerdict",
+    "PlanVerifier",
+    "StateVerifier"
+  ],
+  "summary": "Plan verification and soul law compliance engine. PlanVerifier validates Reactive plans before ACT step: checks SOUL Law II (no simulation), tool call validity, memory write protocol, and brotherhood command language rules. StateVerifier validates current HeartbeatAgent state: memory root hash integrity (SOUL Law III), HMAC event signatures for tamper detection, and soul law count (expects exactly 5). Never raises exceptions — converts to rejected verdicts. Returns VerifyVerdict with accept/reject and violation list.",
+  "kral_sig": "457ca11c0427588b9a6e69e6a652d89ccf24bcd33ce96a9b8715ffb9089e7d8b",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:50:43Z"
+}

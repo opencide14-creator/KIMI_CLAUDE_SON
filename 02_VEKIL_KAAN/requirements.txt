@@ -1,0 +1,30 @@
+# VEKIL-KAAN RAG OS — dependencies
+# Private system — not for distribution
+
+# Core
+pydantic>=2.6.0
+python-dotenv>=1.0.0
+
+# Vector store
+chromadb>=0.5.0
+
+# Cryptography — Ed25519 + BLAKE2b
+cryptography>=42.0.0
+
+# Markdown parsing (law engine)
+markdown-it-py>=3.0.0
+PyYAML>=6.0.1
+
+# File watching (Obsidian vault watcher)
+watchdog>=4.0.0
+
+# Embeddings (local, no external API required)
+sentence-transformers>=3.0.0
+
+# LLM interfaces
+anthropic>=0.25.0
+requests>=2.31.0  # Ollama HTTP
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

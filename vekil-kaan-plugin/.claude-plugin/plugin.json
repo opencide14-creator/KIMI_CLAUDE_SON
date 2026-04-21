@@ -1,0 +1,13 @@
+{
+  "name": "vekil-kaan-sovereign",
+  "version": "4.0.0",
+  "description": "Sovereign dual-agent system with constitutional law enforcement, MITM proxy, and AI gateway",
+  "author": {
+    "name": "KRAL",
+    "email": "samet@vekil-kaan.tr"
+  },
+  "homepage": "https://github.com/kral/vekil-kaan-plugin",
+  "repository": "https://github.com/kral/vekil-kaan-plugin",
+  "license": "MIT",
+  "keywords": ["sovereign", "dual-agent", "constitutional-ai", "gateway", "mitm", "vekil", "kaan"]
+}

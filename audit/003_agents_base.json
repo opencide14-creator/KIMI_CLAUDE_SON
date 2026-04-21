@@ -1,0 +1,15 @@
+{
+  "file": "02_VEKIL_KAAN/agents/base.py",
+  "size_bytes": 1874,
+  "lines": 67,
+  "type": "python",
+  "classes": [
+    "AgentStatus",
+    "AgentState",
+    "BaseAgent"
+  ],
+  "summary": "Abstract base class for both Reactive and Heartbeat agents. Defines AgentStatus enum (INITIALIZING, ACTIVE, SAFE_MODE, AWAIT_RESYNC, BROTHERHOOD_MOURNING, SILENT_GUARDIAN, HALTED). AgentState dataclass holds agent_id, status, memory_root_hash, last_event_id, cycle_count. BaseAgent ABC requires boot() and get_state() implementations. Status transitions logged via _transition() method.",
+  "kral_sig": "ebb440e9c2a950a002be089c15f5b8c18a7245451cba73ded15532688229a8e7",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:49:11Z"
+}

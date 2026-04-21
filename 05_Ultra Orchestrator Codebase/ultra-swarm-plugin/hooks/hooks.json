@@ -1,0 +1,74 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ./scripts/session-start.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if there are any active UltraSwarm tasks running. If there are active tasks, remind the user politely: 'Su anda X aktif swarm gorevi var, oncelikle onlari kontrol etmemi ister misiniz?' Do NOT order the user. Only ask if they would like you to check. If no active tasks, return empty.",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ./scripts/pre-bash-check.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "If an active UltraSwarm task exists and the edited file is in the critical path (settings.py, core.py, quality_gate.py, sandbox_executor.py, or any checkpoint-related file), suggest to the user: 'Bu dosya aktif bir swarm gorevinin kritik yolunda. Checkpoint almak ister misiniz?' Otherwise return empty.",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python ./scripts/stop-check.py",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Before stopping, verify: 1) Are there any active UltraSwarm tasks? 2) If yes, did the last checkpoint succeed? 3) Did quality gate pass for the latest checkpoint? 4) Is everything ready to provide an accurate and honest answer to the user? If any task is incomplete and user hasn't been informed, suggest continuing. Return 'approve' to stop or 'block' with specific reason.",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

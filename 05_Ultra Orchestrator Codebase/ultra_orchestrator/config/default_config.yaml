@@ -1,0 +1,126 @@
+kimi_api_keys:
+- id: KEY_1
+  key: ${KIMI_KEY_1}
+  tier: coding
+  max_tokens_per_minute: 200000
+  max_requests_per_minute: 60
+  priority: 1
+- id: KEY_2
+  key: ${KIMI_KEY_2}
+  tier: coding
+  max_tokens_per_minute: 200000
+  max_requests_per_minute: 60
+  priority: 2
+- id: KEY_3
+  key: ${KIMI_KEY_3}
+  tier: coding
+  max_tokens_per_minute: 200000
+  max_requests_per_minute: 60
+  priority: 3
+- id: KEY_4
+  key: ${KIMI_KEY_4}
+  tier: coding
+  max_tokens_per_minute: 200000
+  max_requests_per_minute: 60
+  priority: 4
+rate_limit_strategy: token_resonance
+safety_margin: 0.8
+global_concurrent_limit: 40
+batch_size_max: 40
+batch_size_min: 1
+max_retries: 7
+task_timeout_seconds: 180
+checkpoint_interval: 5
+hard_limits:
+  max_concurrent: 20
+  per_key_concurrent: 10
+  per_key_tpm: 200000
+  per_key_rpm: 60
+  api_max_retries: 5
+  circuit_open_after_429s: 5
+  retry_base_delay: 2.0
+  duplicate_similarity_threshold: 0.9
+  max_unused_import_ratio: 0.5
+  checkpoint_interval: 5
+  global_concurrent_limit: 40
+  batch_size_max: 40
+  batch_size_min: 1
+  task_timeout_seconds: 180
+  safety_margin: 0.8
+sandbox_patterns:
+- pattern: os\.system\s*\(
+  description: os.system
+- pattern: subprocess\.call\s*\(
+  description: subprocess.call
+- pattern: subprocess\.Popen\s*\(
+  description: subprocess.Popen
+- pattern: subprocess\.run\s*\(
+  description: subprocess.run
+- pattern: eval\s*\(
+  description: eval()
+- pattern: exec\s*\(
+  description: exec()
+- pattern: __import__\s*\(
+  description: __import__()
+- pattern: importlib\.import_module\s*\(
+  description: importlib.import_module()
+- pattern: socket\.
+  description: socket module
+- pattern: urllib\.request
+  description: urllib.request
+- pattern: requests\.
+  description: requests library
+- pattern: import\s+ctypes
+  description: ctypes import
+- pattern: from\s+ctypes
+  description: ctypes import
+- pattern: import\s+multiprocessing
+  description: multiprocessing import
+- pattern: from\s+multiprocessing
+  description: multiprocessing import
+banned_patterns:
+  pass\s*#\s*(TODO|FIXME|placeholder|implement): Placeholder comment after pass
+  raise\s+NotImplementedError: NotImplementedError raised
+  '#\s*(TODO|FIXME|HACK|XXX|PLACEHOLDER|STUB)': TODO/FIXME/HACK/XXX comment
+  \.{3}(\s*#.*)?$: Ellipsis used as body
+  print\s*\(\s*["\'].*(?:done|success|complete|ok|works|working)["\']: Fake success
+    print
+  print\s*\(\s*["\']TODO: TODO print statement
+  mock\s*=\s*Mock\(: Mock assignment
+  '@patch\(': unittest.mock.patch decorator
+  MagicMock\(: MagicMock usage
+  from\s+unittest\.mock\s+import: import from unittest.mock
+  import\s+unittest\.mock: import unittest.mock
+  def\s+\w+\s*\([^)]*\)\s*:\s*pass\s*$: Empty function (pass only)
+  class\s+\w+.*:\s*pass\s*$: Empty class (pass only)
+  return\s+['"].*['"](\s*#.*mock.*)?$: Fake string return
+  return\s+\[\s*\](\s*#.*empty.*)?$: Fake empty list return
+  return\s+\{\s*\}(\s*#.*empty.*)?$: Fake empty dict return
+  return\s+None\s*#.*placeholder: None return with placeholder comment
+  '[''"]example\.com[''"]': Hardcoded example.com
+  '[''"]test@test\.com[''"]': Hardcoded test email
+  '[''"]123-456-7890[''"]': Hardcoded phone number
+  '[''"]Lorem ipsum': Hardcoded Lorem ipsum
+  '[''"]your_api_key_here[''"]': Hardcoded API key placeholder
+  '[''"]INSERT_TOKEN[''"]': Hardcoded INSERT_TOKEN
+  '[''"]Sample text[''"]': Hardcoded sample text
+  '[''"]Placeholder[''"]': Hardcoded Placeholder
+  except\s*:\s*pass: Bare except with pass
+  except\s+Exception\s*:\s*pass: except Exception with pass
+  except\s*:\s*\.{3}: Bare except with ellipsis
+sandbox:
+  enabled: true
+  timeout_seconds: 30
+quality_gate:
+  layer_0_existence: true
+  layer_1_anti_smell: true
+  layer_2_criteria: true
+  layer_3_sandbox: true
+  layer_4_dedup: true
+display:
+  show_reasoning_panel: true
+  log_level: INFO
+  theme: dark
+cost_control:
+  max_session_cost_usd: 50.0
+  pause_on_cost_exceeded: true

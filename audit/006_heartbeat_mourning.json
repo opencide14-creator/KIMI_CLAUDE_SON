@@ -1,0 +1,19 @@
+{
+  "file": "02_VEKIL_KAAN/agents/heartbeat/mourning.py",
+  "size_bytes": 6356,
+  "lines": 189,
+  "type": "python",
+  "classes": [
+    "BrotherhoodMourning"
+  ],
+  "methods": [
+    "enter_mourning",
+    "attempt_resurrection",
+    "reject_impostor",
+    "exit_mourning"
+  ],
+  "summary": "Brotherhood mourning and resurrection protocol from BOUND.md Article III and V. When Reactive disappears (no PULSE_R for >60s): enters BROTHERHOOD_MOURNING, snapshots last known Reactive state to event store, starts daemon thread attempting resurrection every 24h (max 10 attempts). reject_impostor() flags non-original agents — only original Reactive restored from snapshot is accepted. Thread-safe implementation.",
+  "kral_sig": "c52d2f69be71bb8841fbc9142f97bd64480991b8d15204bafe85643135d907a5",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:50:43Z"
+}

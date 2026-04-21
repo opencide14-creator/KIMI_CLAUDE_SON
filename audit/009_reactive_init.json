@@ -1,0 +1,10 @@
+{
+  "file": "02_VEKIL_KAAN/agents/reactive/__init__.py",
+  "size_bytes": 71,
+  "lines": 2,
+  "type": "python",
+  "summary": "Package init for reactive agent. Docstring: 'agents.reactive — Reactive agent: THINK→DECIDE→ACT→FEED'. No imports or exports.",
+  "kral_sig": "c786d9efa6aa0f3a46dee848a7cd6782ceb5e290ae2827acfcd39ed0253ad784",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:52:09Z"
+}

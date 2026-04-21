@@ -1,0 +1,28 @@
+{
+  "sovereign-gateway": {
+    "command": "python",
+    "args": [
+      "${CLAUDE_PLUGIN_ROOT}/servers/gateway.py",
+      "--port",
+      "4000"
+    ],
+    "env": {
+      "KIMI_API_KEY": "${KIMI_API_KEY}",
+      "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+      "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+      "LOG_LEVEL": "info",
+      "GATEWAY_CONFIG": "${CLAUDE_PLUGIN_ROOT}/config/gateway.json"
+    }
+  },
+  "vekil-memory": {
+    "command": "python",
+    "args": [
+      "${CLAUDE_PLUGIN_ROOT}/servers/memory_server.py"
+    ],
+    "env": {
+      "CHROMA_PATH": "${CLAUDE_PLUGIN_ROOT}/data/chroma",
+      "SQLITE_PATH": "${CLAUDE_PLUGIN_ROOT}/data/vekil.db",
+      "LOG_LEVEL": "info"
+    }
+  }
+}

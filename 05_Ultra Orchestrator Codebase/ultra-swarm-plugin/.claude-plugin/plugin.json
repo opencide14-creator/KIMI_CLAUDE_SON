@@ -1,0 +1,12 @@
+{
+  "name": "ultra-swarm",
+  "version": "1.0.0",
+  "description": "Claude Code integration for UltraOrchestrator — submit swarm tasks, track progress, manage quality gates, and monitor sandbox execution with full checkpoint awareness.",
+  "author": {
+    "name": "ALUVERSE",
+    "email": "komutan@aluverse.local"
+  },
+  "homepage": "https://github.com/aluverse/ultra-swarm",
+  "keywords": ["orchestrator", "swarm", "ai", "task-queue", "quality-gate", "sandbox", "checkpoint"],
+  "mcpServers": "./.mcp.json"
+}

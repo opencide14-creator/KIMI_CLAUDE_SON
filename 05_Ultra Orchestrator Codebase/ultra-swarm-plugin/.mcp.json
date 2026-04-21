@@ -1,0 +1,12 @@
+{
+  "ultra-swarm-mcp": {
+    "command": "python3",
+    "args": ["-u", "./scripts/mcp-server.py"],
+    "env": {
+      "ULTRA_SWARM_HOME": "${ULTRA_SWARM_HOME}",
+      "ULTRA_EXE_PATH": "${ULTRA_EXE_PATH}",
+      "ULTRA_CONFIG_PATH": "${ULTRA_CONFIG_PATH}",
+      "PYTHONPATH": "${PYTHONPATH}"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "file": "02_VEKIL_KAAN/agents/__init__.py",
+  "size_bytes": 70,
+  "lines": 2,
+  "type": "python",
+  "summary": "Package init for agents module. Single docstring: 'agents — VEKIL-KAAN dual-agent system (Reactive + Heartbeat)'. No imports, no exports. Entry point for the dual-agent architecture.",
+  "kral_sig": "a7b67fa17780c68728641f1a2a77312259c246ed59fbcee24321ad792d561ea7",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:49:11Z"
+}

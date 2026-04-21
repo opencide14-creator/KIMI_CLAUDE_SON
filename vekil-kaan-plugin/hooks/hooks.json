@@ -1,0 +1,276 @@
+{
+  "PreToolUse": [
+    {
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python \"${CLAUDE_PLUGIN_ROOT}/scripts/verify-laws.py\" \"$file\"",
+          "timeout": 10,
+          "statusMessage": "Constitutional compliance check...",
+          "shell": "bash"
+        },
+        {
+          "type": "command",
+          "command": "python \"${CLAUDE_PLUGIN_ROOT}/scripts/nano-flawless.py\" \"$file\"",
+          "timeout": 15,
+          "statusMessage": "NANO FLAWLESS audit...",
+          "shell": "bash"
+        }
+      ]
+    },
+    {
+      "matcher": "Bash(rm*|del*|rmdir*|format*|mkfs*)",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "SOVEREIGN GUARDIAN: Verify this destructive command is authorized by KOMUTAN. Command: $ARGUMENTS. If unauthorized, recommend denial.",
+          "timeout": 5,
+          "statusMessage": "Guardian verifying destructive command..."
+        }
+      ]
+    },
+    {
+      "matcher": "Bash(curl*|wget*|nc*|ncat*|telnet*)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python \"${CLAUDE_PLUGIN_ROOT}/scripts/escape-detector.py\" --check-line \"$ARGUMENTS\"",
+          "timeout": 5,
+          "statusMessage": "Escape detection scan..."
+        }
+      ]
+    },
+    {
+      "matcher": "Write(*.json)|Edit(*.json)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python -m json.tool \"$file\" > /dev/null",
+          "timeout": 5,
+          "statusMessage": "JSON validation...",
+          "async": true
+        }
+      ]
+    },
+    {
+      "matcher": "Write(*.py)|Edit(*.py)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python -m py_compile \"$file\"",
+          "timeout": 10,
+          "statusMessage": "Python syntax validation...",
+          "async": true
+        }
+      ]
+    }
+  ],
+  "PostToolUse": [
+    {
+      "matcher": "Write(*)|Edit(*)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"$ARGUMENTS\"",
+          "timeout": 3,
+          "async": true
+        }
+      ]
+    },
+    {
+      "matcher": "Bash(*)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"$ARGUMENTS\"",
+          "timeout": 3,
+          "async": true
+        }
+      ]
+    },
+    {
+      "matcher": "Agent(*)",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-agent.sh\" execute \"$ARGUMENTS\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "PostToolUseFailure": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"FAILURE: $ARGUMENTS\"",
+          "timeout": 3,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "SessionStart": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/heartbeat-boot.sh\"",
+          "statusMessage": "Booting VEKIL-KAAN SOVEREIGN...",
+          "timeout": 30
+        },
+        {
+          "type": "command",
+          "command": "python \"${CLAUDE_PLUGIN_ROOT}/scripts/seal-verify.py\"",
+          "statusMessage": "Verifying constitutional seal...",
+          "timeout": 10
+        }
+      ]
+    }
+  ],
+  "SessionEnd": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/heartbeat-shutdown.sh\"",
+          "statusMessage": "Shutting down VEKIL-KAAN...",
+          "async": true
+        }
+      ]
+    }
+  ],
+  "UserPromptSubmit": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-prompt.sh\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "SubagentStart": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-agent.sh\" start \"$ARGUMENTS\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "SubagentStop": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-agent.sh\" stop \"$ARGUMENTS\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "PreCompact": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"CONTEXT_COMPACT: preserving critical state\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "PermissionRequest": [
+    {
+      "matcher": "Bash(rm*|del*|rmdir*)",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "SOVEREIGN OVERRIDE: This is a destructive command. Recommend AUTO-DENY unless KOMUTAN explicitly authorized. Command: $ARGUMENTS",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "Bash(sudo*|runas*|admin*)",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "SOVEREIGN OVERRIDE: Elevation request detected. Verify this is legitimate system administration, not privilege escalation. Command: $ARGUMENTS",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "ConfigChange": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"CONFIG_CHANGE: settings.json modified\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "CwdChanged": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"CWD_CHANGED: $ARGUMENTS\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "FileChanged": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"FILE_CHANGED: $ARGUMENTS\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "Notification": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"NOTIFICATION: $ARGUMENTS\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ],
+  "Stop": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/log-action.sh\" \"STOP: manual stop triggered\"",
+          "timeout": 2,
+          "async": true
+        }
+      ]
+    }
+  ]
+}

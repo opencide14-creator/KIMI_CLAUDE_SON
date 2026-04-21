@@ -1,0 +1,29 @@
+{
+  "file": "02_VEKIL_KAAN/agents/reactive/agent.py",
+  "size_bytes": 19991,
+  "lines": 483,
+  "type": "python",
+  "classes": [
+    "ReactiveAgent"
+  ],
+  "methods": [
+    "boot",
+    "get_state",
+    "run_cycle",
+    "observe",
+    "reason",
+    "act",
+    "goal_achieved",
+    "refresh_pulse_h"
+  ],
+  "tools": [
+    "rag_search",
+    "rag_read",
+    "rag_write",
+    "rag_ingest"
+  ],
+  "summary": "Reactive Agent — the action arm of VEKIL-KAAN. Runs OBSERVE→THINK→REQUEST→ACT→FEED cycle per input. FREEZES if no PULSE_H within 30s (safe mode). Emits PULSE_R every 5 actions. Uses 7-step tool call protocol: write intent, Heartbeat verifies, execute tool, Heartbeat ingests result. Built-in RAG tools: rag_search (semantic query), rag_read (chunk retrieval), rag_write (content storage), rag_ingest (session context). Constructs from BootContext + HeartbeatAgent + optional LLM. ReasonEngine for plan generation. GoalEvaluator for achievement checking. Deterministic 384-dim SHA-256-based embedding for network-restricted environments. Max 3 re-reasons if Heartbeat rejects plan.",
+  "kral_sig": "674af9570b61c2be5405c30c8b1fa0e4cd9536cda9efdf547203a7b991bf8433",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:52:09Z"
+}

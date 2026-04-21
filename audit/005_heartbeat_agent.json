@@ -1,0 +1,28 @@
+{
+  "file": "02_VEKIL_KAAN/agents/heartbeat/agent.py",
+  "size_bytes": 18024,
+  "lines": 452,
+  "type": "python",
+  "classes": [
+    "HeartbeatAgent"
+  ],
+  "methods": [
+    "boot",
+    "get_state",
+    "run_cycle",
+    "sense",
+    "store",
+    "verify",
+    "verify_plan",
+    "pulse",
+    "ingest",
+    "receive_pulse_r",
+    "get_last_pulse_h",
+    "start_background",
+    "stop_background"
+  ],
+  "summary": "Heartbeat Agent — the continuity and validation arm of VEKIL-KAAN. Runs SENSE→STORE→VERIFY→PULSE cycle every 15 seconds. Does NOT take actions in the world — ensures every action is valid, recorded, and consistent with the law registry. Constructs from BootContext with memory substrate, event store, audit log, law registry, and law enforcer. Manages PULSE_R reception from Reactive agent (thread-safe via lock). Enters BROTHERHOOD_MOURNING if PULSE_R missing >60s. Supports background thread operation. Uses PlanVerifier and StateVerifier for law compliance checks. Writes BOOT, PULSE_H, PULSE_R, TOOL_RESULT, and FLAG events to store.",
+  "kral_sig": "08c126f129cb863f494b9b403ca357ef7cbbaaa16a98c379a437e13df477d101",
+  "kral_fp": "629c3bc42d7c99f1c62972aa148c02bad7a70d034ffd6735ef369c300bd57c52",
+  "signed_at": "2026-04-19T03:49:50Z"
+}

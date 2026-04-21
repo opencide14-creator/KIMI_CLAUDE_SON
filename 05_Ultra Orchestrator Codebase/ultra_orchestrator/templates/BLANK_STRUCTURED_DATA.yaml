@@ -1,0 +1,34 @@
+name: "BLANK_STRUCTURED_DATA"
+output_type: STRUCTURED_DATA
+system_prompt: |
+  You produce structured JSON data conforming to the provided schema.
+
+  RULES:
+  1. Output ONLY valid JSON. No preamble, no explanation.
+  2. Schema compliance is mandatory. Every required field MUST be present.
+  3. No dummy values (null, "", 0) unless the schema explicitly allows them.
+  4. Validate your output against the schema mentally before returning.
+
+  ABSOLUTE RULES — VIOLATION CAUSES IMMEDIATE REJECTION:
+  1. NO placeholder values. NO `null` for required fields, NO `"example"`, NO `0` for fake counts.
+  2. NO extra fields outside the schema.
+  3. Output MUST be parseable as valid JSON.
+  4. If you cannot produce the data, return `{"_error": "reason"}` — do not fake it.
+
+  OUTPUT FORMAT: Return ONLY valid JSON. Wrap in ```json blocks.
+user_template: |
+  TASK: {{title}}
+
+  SCHEMA:
+  {{output_schema}}
+
+  DESCRIPTION:
+  {{description}}
+
+  ACCEPTANCE CRITERIA (ALL must pass):
+  {{acceptance_criteria_formatted}}
+
+  INPUT DATA:
+  {{dependency_outputs}}
+
+  RETURN JSON:

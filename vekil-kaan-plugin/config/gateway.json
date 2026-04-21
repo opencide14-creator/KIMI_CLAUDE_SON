@@ -1,0 +1,66 @@
+{
+  "proxy_port": 8080,
+  "gateway_port": 4000,
+  "default_backend": "kimi",
+  "backends": {
+    "kimi": {
+      "base_url": "https://api.moonshot.cn/v1",
+      "api_keys_env": "KIMI_API_KEYS",
+      "timeout_seconds": 60,
+      "max_retries": 3,
+      "circuit_breaker_threshold": 5,
+      "circuit_breaker_cooldown_seconds": 30,
+      "key_rotation": "round-robin"
+    },
+    "anthropic": {
+      "base_url": "https://api.anthropic.com",
+      "timeout_seconds": 60,
+      "max_retries": 3,
+      "circuit_breaker_threshold": 5,
+      "circuit_breaker_cooldown_seconds": 30
+    },
+    "openai": {
+      "base_url": "https://api.openai.com/v1",
+      "timeout_seconds": 60,
+      "max_retries": 3,
+      "circuit_breaker_threshold": 5,
+      "circuit_breaker_cooldown_seconds": 30
+    },
+    "ollama": {
+      "base_url": "http://localhost:11434",
+      "timeout_seconds": 120,
+      "max_retries": 1,
+      "circuit_breaker_threshold": 3,
+      "circuit_breaker_cooldown_seconds": 60
+    }
+  },
+  "routing_rules": [
+    {
+      "match": "model starts with kimi",
+      "backend": "kimi"
+    },
+    {
+      "match": "model starts with claude",
+      "backend": "anthropic"
+    },
+    {
+      "match": "model starts with gpt",
+      "backend": "openai"
+    },
+    {
+      "match": "model starts with llama",
+      "backend": "ollama"
+    }
+  ],
+  "logging": {
+    "level": "info",
+    "path": "./logs/gateway",
+    "max_size_mb": 100,
+    "retention_days": 30
+  },
+  "security": {
+    "verify_ssl": true,
+    "request_timeout_seconds": 60,
+    "max_request_size_mb": 10
+  }
+}
